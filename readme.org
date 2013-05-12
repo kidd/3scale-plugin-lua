@@ -1,21 +1,13 @@
-* http://www.mactech.com/articles/mactech/Vol.14/14.10/WritingAReadMeFile/index.html
-* http://blog.thefrontiergroup.com.au/2013/05/writing-a-good-readme/
-
 * Name
 	3scale-lua
 * Version
-	0.1 alpha
+	Version 0.1 alpha
 * Synopsis
 #+NAME: synopsis
 #+BEGIN_SRC lua
   TSClient = require("threescale.client")
   c = TSClient.new(provider_key)
   c:authrep{user_key = user_key}
-
-  local redis = require("redis")
-  for i,v in ipairs(t) do
-    print(v)
-  end
 #+END_SRC
 
 * Description
@@ -24,9 +16,22 @@
 
 * Methods
 * Testing
+	busted -v spec/integration/client.lua
+
 * Dependencies
+	- Busted
+	- LuaXml
+	- socket.http
+
 * Acknowledements
 	-[[http://3scale.net/][3scale]]
+
 * Author
 	- [[https://github.com/kidd][Raimon Grau]]
+
 * License
+	MIT
+
+* Meta
+	- http://www.mactech.com/articles/mactech/Vol.14/14.10/WritingAReadMeFile/index.html
+	- http://blog.thefrontiergroup.com.au/2013/05/writing-a-good-readme/
