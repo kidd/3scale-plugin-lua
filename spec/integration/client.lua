@@ -11,13 +11,13 @@ setup(function()
 			end)
 
 teardown(function()
-		 client = nil
-			end)
+            client = nil
+         end)
 
 describe("authrep", function()
 						it("creates", function()
-									c = TSClient.new(Config.provider_key)
-									c:authrep{user_key = Config.user_key}
+                  c = TSClient.new(Config.provider_key)
+                  c:authrep{user_key = Config.user_key}
 									assert.is_true(true)
 
 													end)
