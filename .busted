@@ -1,0 +1,10 @@
+return {
+  default = {
+    verbose = true
+  },
+  apiUnit = {
+    tags = "api",
+    ROOT = "spec/unit"
+    verbose = true
+  }
+}
