@@ -15,10 +15,9 @@ teardown(function()
          end)
 
 describe("authrep", function()
-						it("creates", function()
+            it("creates", function()
                   c = TSClient.new(Config.provider_key)
                   c:authrep{user_key = Config.user_key}
-									assert.is_true(true)
-
-													end)
-										end)
+                  assert.is_true(true)
+                          end)
+                    end)
