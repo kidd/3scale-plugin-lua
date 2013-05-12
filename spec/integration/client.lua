@@ -1,14 +1,14 @@
 describe("a test", function()
-						it("works", function()
-									assert.is_true(true)
-												end)
-									 end)
+            it("works", function()
+                  assert.is_true(true)
+                        end)
+                   end)
 
 setup(function()
-				 TSClient = require("threescale.client")
-				 Config = dofile('credentials.txt')
-				 assert.is_not_nil(TSClient)
-			end)
+         TSClient = require("threescale.client")
+         Config = dofile('credentials.txt')
+         assert.is_not_nil(TSClient)
+      end)
 
 teardown(function()
             client = nil
