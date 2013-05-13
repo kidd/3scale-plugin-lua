@@ -2,36 +2,36 @@ Response = {}
 function Response.new()
 	 local self = {}
 
-	 self.success = false
-	 self.error_message = ""
-	 self.v_error_code = ""
+	 local success = false
+	 local error_message = ""
+	 local v_error_code = ""
 
-	 function self:set_to_succeeded()
-			self.success = true
-			self.error_message = ""
-			self.v_error_code = nil
+	 function self.set_to_succeeded()
+			success = true
+			error_message = ""
+			v_error_code = nil
 	 end
 
-	 function self:set_to_failed(msg, code)
-			self.v_error_code = (code or nil)
-			self.success = false
-			self.error_message = mgs
+	 function self.set_to_failed(msg, code)
+			v_error_code = (code or nil)
+			success = false
+			error_message = mgs
 	 end
 
-	 function self:succeeded()
-			return self.success
+	 function self.succeeded()
+			return success
 	 end
 
-	 function self:failed()
-			return not self:succeeded()
+	 function self.failed()
+			return not succeeded()
 	 end
 
-	 function self:error_messages()
-			return self.error_message
+	 function self.error_messages()
+			return error_message
 	 end
 
-	 function self:error_code()
-			return self.v_error_code
+	 function self.error_code()
+			return v_error_code
 	 end
 
 

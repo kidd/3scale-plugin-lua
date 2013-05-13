@@ -15,14 +15,14 @@ end
 function TSClient.new(provider_key)
    local self = {}
 
-	 self.scheme = "https://"
-   self.host = "su1.3scale.net"
-	 self.provider_key = provider_key
+	 local scheme = "https://"
+   local host = "su1.3scale.net"
+	 local provider_key = provider_key
 
-   function self:authorize(app_id, app_key)
+   function self.authorize(app_id, app_key)
 			path = '/transactions/authorize.xml'
-			req_path = {self.scheme , self.path , self.path, "?provider_key=",
-									self.provider_key, "&app_id=", app_id}
+			req_path = {scheme , path , path, "?provider_key=",
+									provider_key, "&app_id=", app_id}
 
 			if app_key then
 				 table.insert(reqpath, "&app_key=")
@@ -32,12 +32,12 @@ function TSClient.new(provider_key)
 			return response.body
    end
 
-   function self:report(t)
+   function self.report(t)
 			return t
    end
 
-   function self:authrep(t)
-			path = "/transactions/authrep.xml?provider_key=".. self.provider_key
+   function self.authrep(t)
+			path = "/transactions/authrep.xml?provider_key=".. provider_key
 
       options_usage = table.delete(t, 'usage')
       options_log   = table.delete(t, 'log')
@@ -64,7 +64,7 @@ function TSClient.new(provider_key)
 				 end
 				 path = path .. table.concat(usage, "&")
       end
-			body, status, h = http.request(self.scheme .. self.host .. path)
+			body, status, h = http.request(scheme .. host .. path)
 
 			if status == 200 then
 				 build_authorize_response(body)
