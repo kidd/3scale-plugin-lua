@@ -1,6 +1,6 @@
 UsageReport = {}
 function UsageReport.new(data)
-	 local self = {}
+   local self = {}
 
    function self.period_start()
    end
