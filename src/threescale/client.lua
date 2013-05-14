@@ -105,7 +105,7 @@ function TSClient.new(provider_key)
 			print("\n")
 			print(xml_info:find("authorized")[1])
 			if  xml_info:find("authorized")[1] then
-				 response.success!
+				 response.set_to_succeeded()
 			end
 	 end
 
