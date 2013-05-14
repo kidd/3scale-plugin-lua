@@ -98,13 +98,14 @@ function TSClient.new(provider_key)
 
 	 function build_authorize_response(xml_str)
 			local xml_info = xml.eval(xml_str)
+			local response = AuthorizeResponse.new()
 			print(dump(xml_info))
 
 			print("\n")
 			print("\n")
 			print(xml_info:find("authorized")[1])
-			if not xml_info:find("authorized")[1] then
-				 print("foo")
+			if  xml_info:find("authorized")[1] then
+				 response.success!
 			end
 	 end
 
