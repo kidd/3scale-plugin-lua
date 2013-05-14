@@ -23,7 +23,7 @@ function Response.new()
    end
 
    function self.failed()
-      return not succeeded()
+      return not self.succeeded()
    end
 
    function self.error_messages()
@@ -33,8 +33,6 @@ function Response.new()
    function self.error_code()
       return v_error_code
    end
-
-
    return self
 end
 

@@ -1,6 +1,7 @@
 -- http://lua-users.org/wiki/ObjectOrientationClosureApproach
 http = require("socket.http")
 inspect = require("inspect")
+AuthorizeResponse = require("threescale.authorize_response")
 
 require("LuaXml") -- from kidd/LuaXML
 -- utils = require("utils")				--
@@ -43,33 +44,35 @@ function TSClient.new(provider_key)
       options_log   = table.delete(t, 'log')
 
       for k,v in pairs(t) do
-	 path = path .. "&" .. k .. "=" .. v
+				 path = path .. "&" .. k .. "=" .. v
       end
 
       if not options_usage then
-	 options_usage = {hits=1}
+				 options_usage = {hits=1}
       end
 
       usage = {}
       for metric,value in pairs(options_usage) do
-	 table.insert(usage, string.format("[usage][%s]=%d", metric, value))
+				 table.insert(usage, string.format("[usage][%s]=%d", metric, value))
       end
 
       path = path .. "&".. table.concat(usage, "&")
 
       if options_log then
-	 log = {}
-	 for metric,value in pairs(options_log) do
-	    table.insert(log, string.format("[log][%s]=%d", metric, value))
-	 end
-	 path = path .. table.concat(usage, "&")
+				 log = {}
+				 for metric,value in pairs(options_log) do
+						table.insert(log, string.format("[log][%s]=%d", metric, value))
+				 end
+				 path = path .. table.concat(usage, "&")
       end
       body, status, h = http.request(scheme .. host .. path)
 
       if status == 200 then
-	 build_authorize_response(body)
+				 print("ok")
+				 return build_authorize_response(body)
       else
-	 build_error_response(body)
+				 print("failed")
+				 return build_error_response(body)
       end
       -- case http_response
       -- when Net::HTTPSuccess,Net::HTTPConflict
@@ -79,22 +82,26 @@ function TSClient.new(provider_key)
       -- else
       -- 	 raise ServerError.new(http_response)
       -- end
-      return body
+      return nil
 
    end
 
    function dump(o)
       if type(o) == 'table' then
-	 local s = '{ '
-	 for k,v in pairs(o) do
-	    if type(k) ~= 'number' then k = '"'..k..'"' end
-	    s = s .. '['..k..'] = ' .. dump(v) .. ','
-	 end
-	 return s .. '} '
+				 local s = '{ '
+				 for k,v in pairs(o) do
+						if type(k) ~= 'number' then k = '"'..k..'"' end
+						s = s .. '['..k..'] = ' .. dump(v) .. ','
+				 end
+				 return s .. '} '
       else
-	 return tostring(o)
+				 return tostring(o)
       end
    end
+
+	 function build_error_response(xml_str)
+
+	 end
 
 	 function build_authorize_response(xml_str)
 			local xml_info = xml.eval(xml_str)
@@ -104,9 +111,10 @@ function TSClient.new(provider_key)
 			print("\n")
 			print("\n")
 			print(xml_info:find("authorized")[1])
-			if  xml_info:find("authorized")[1] then
+			if xml_info:find("authorized")[1] then
 				 response.set_to_succeeded()
 			end
+			return response
 	 end
 
    return self

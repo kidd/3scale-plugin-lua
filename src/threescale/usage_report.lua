@@ -9,7 +9,7 @@ function UsageReport.new(data)
    end
 
    function self.is_overlimit()
-      current_value < max_value
+      return (current_value < max_value)
    end
 
    for k,v in pairs({"metric", "period", "period_start", "period_end", "current_value", "max_value"}) do

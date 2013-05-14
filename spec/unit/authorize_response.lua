@@ -1,5 +1,5 @@
 setup(function()
-         Response = require("threescale.authorize_response")
+         AResponse = require("threescale.authorize_response")
       end)
 
 teardown(function()
@@ -10,8 +10,8 @@ describe("authorize_response inherits from response",
 				function()
 					 it("creates a different object",
 							function()
-								 r = Response.new()
+								 r = AResponse.new()
 								 r.set_to_succeeded()
-								 -- assert.is_true(r.succeeded())
--							end)
+								 assert.is_true(r.succeeded())
+							end)
 				end)

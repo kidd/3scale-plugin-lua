@@ -17,7 +17,9 @@ teardown(function()
 describe("authrep", function()
             it("creates", function()
                   c = TSClient.new(Config.provider_key)
-                  c:authrep{user_key = Config.user_key}
-                  assert.is_true(true)
+                  res = c.authrep{user_key = Config.user_key}
+                  assert.is_true(res.succeeded())
+                  assert.are.equal('', res.error_messages())
+                  assert.is_false(res.failed())
                           end)
                     end)
