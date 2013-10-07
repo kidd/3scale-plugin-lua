@@ -100,7 +100,7 @@ function TSClient.new(provider_key)
    end
 
 	 function build_error_response(xml_str)
-
+      print(xml_str)
 	 end
 
 	 function build_authorize_response(xml_str)
